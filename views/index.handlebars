@@ -3,12 +3,12 @@
 <h2>I DARE YOU TO EAT IT!</h2>
 
 <ul>
-    {{#each cats}} {{#unless sleepy}} {{> cats/cat-block sleep=true}} {{/unless}} {{/each}}
+    {{#each burgers}} {{#unless devoured}} {{> burger/burger-block sleep=true}} {{/unless}} {{/each}}
 </ul>
 <H2>YUMMY YUMMY IN MY TUMMY!</h2>
 
 <ul>
-    {{#each cats}} {{#if sleepy}} {{> cats/cat-block sleep=false}} {{/if}} {{/each}}
+    {{#each burgers}} {{#if Order}} {{> burger/burger-block sleep=false}} {{/if}} {{/each}}
 </ul>
 
 <h2>ORDER BURGER!</h2>
@@ -18,7 +18,6 @@
         <label for="br">Order Your Burger!</label>
         <input type="text" id="br" name="name">
     </div>
-
 
     <button type="submit">ORDER</button>
 </form>

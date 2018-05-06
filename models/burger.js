@@ -1,8 +1,15 @@
-var express = require("express")
-var router = express.router();
-
-var burgers= require("../models/burgers.js")
+var orm = require("../config/orm.js")
 
 
 
+var burger = {
+    all: function(cb) {
+        orm.all(function(res){
+            cb(res);
+        });
+    },
+}
 
+
+
+module.exports = burger;

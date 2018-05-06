@@ -1,9 +1,9 @@
 var connection = require("../config/connection.js");
 
 var orm ={
-    selectAll: function (tableInput, cb) {
-        var queryString = "SELECT * FROM" + tableInput + ";";
-        connection.query(queryString, function(err, result) {
+    all: function (cb) {
+       
+        connection.query("SELECT * FROM burgers", function(err, result) {
             if (err) {
                 throw err;
             }
@@ -11,27 +11,7 @@ var orm ={
         });
     },
 
-    create: function (table, cols, vals, cb) {
-        var queryString = "INSERT INTO " + table;
 
-        queryString += " (";
-        queryString += cols.toString();
-        queryString += ") ";
-        queryString += "VALUES (";
-        queryString += printQuestionMarks(vals.length);
-        queryString += ") ";
-
-        console.log(queryString);
-
-        connection.query(queryString, vals, function (err, result) {
-            if (err) {
-                throw err;
-            }
-
-            cb(result);
-        });
-}
-
-}
+};
 
 module.exports = orm;
