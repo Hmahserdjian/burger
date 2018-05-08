@@ -1,17 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var Burger = require("../models/burger.js")
-if (process.env.JAWSDB_URL) {
-    connection = mysql.createConnection(process.env.JAWSDB_URL);
-} else {
-    connection = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "root",
-        database: "burgers_db"
 
-    })
-}
 
 
 
