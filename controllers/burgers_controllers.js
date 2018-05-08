@@ -1,6 +1,21 @@
 var express = require("express");
 var router = express.Router();
 var Burger = require("../models/burger.js")
+if (process.env.JAWSDB_URL) {
+    connection = mysql.createConnection(process.env.JAWSDB_URL);
+} else {
+    connection = mysql.createConnection({
+        host: "localhost",
+        user: "root",
+        password: "root",
+        database: "burgers_db"
+
+    })
+}
+
+
+
+
 
 router.get("/", (req, res) => {
     Burger.selectAll(function (data) {
@@ -11,13 +26,7 @@ router.get("/", (req, res) => {
         res.render("index", hbsObject);
     });
 });
-    // Burger.selectAll(function (data) {
-    //     // let foundburger ={
-    //     //     burgers: data
-    //     // };
-    //     res.render("index");
-    // });
-    
+
 
 
 router.post("/", function (req, res) {
