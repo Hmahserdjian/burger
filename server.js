@@ -7,7 +7,7 @@ var app = express();
 
 
 app.use(express.static("public"));
-
+var router = require('./controllers/burgers_controllers.js');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -19,7 +19,7 @@ var exphbs = require("express-handlebars");
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
-var router = require('./controllers/burgers_controllers.js');
+
 app.use('/', router);
 
 // Start our server so that it can begin listening to client requests.

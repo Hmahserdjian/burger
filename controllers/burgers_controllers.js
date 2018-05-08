@@ -1,15 +1,34 @@
 var express = require("express");
 var router = express.Router();
-var Burgers = require("../models/burger.js")
+var Burger = require("../models/burger.js")
 
 router.get("/", (req, res) => {
-    Burgers.all(function (data) {
-        let foundburger ={
-            burgers: data
-        }
-        res.render("index", foundburger);
+    Burger.selectAll(function (data) {
+        var hbsObject = {
+            burger: data
+        };
+        console.log(hbsObject);
+        res.render("index", hbsObject);
     });
+});
+    // Burger.selectAll(function (data) {
+    //     // let foundburger ={
+    //     //     burgers: data
+    //     // };
+    //     res.render("index");
+    // });
     
+
+
+router.post("/", function (req, res) {
+    Burgers.create([
+        "burger_name", "Devoured"
+    ], [
+            req.body.name, req.body.Devoured
+        ], function (result) {
+            // Send back the ID of the new quote
+            res.json({ id: result.insertId });
+        });
 });
 // var orm = {
 //     all: function (tableInput, cb) {
@@ -24,3 +43,5 @@ router.get("/", (req, res) => {
 // };
 
 module.exports = router;
+
+// , foundburger
