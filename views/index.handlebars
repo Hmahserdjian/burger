@@ -10,19 +10,22 @@
         </div>
     </div>
 </div>
-<ul>
-    {{#each burger_data}} {{#unless Eat}} {{/unless}} {{/each}}
-</ul>
+
 <div class="container">
 
     <div class="row">
-            <div class="col-md-6">
-                <h2>Ordered</h2> </div>
-            <div class="col-md-6">
-                <h2 align="right">Eaten!</h2>
+        <div class="col-md-6">
+            <h2>Ordered</h2>
+        </div>
+        {{!-- <div class="row"> --}}
+            {{#each burger_data}} {{#unless this.devoured}}
+            <div class="col-md-9">
+                {{this.id}} {{this.burger_name}} {{/unless}} {{/each}}
             </div>
         </div>
+    
     </div>
+</div>
 </div>
 
 <div class="container">
@@ -30,7 +33,6 @@
         {{#each burger_data}} {{#if Eat}} {{/if}} {{/each}}
     </ul>
     <center>
-        <h2>Add a Burger</h2>
         <form action="/burgers/create" method="POST" class="create-form">
 
             <div class="form-group">
