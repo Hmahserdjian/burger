@@ -9,38 +9,33 @@ var Burger = require("../models/burger.js")
 
 router.get("/", (req, res) => {
     Burger.selectAll(function (data) {
-        var hbsObject = {
-            burger: data
-        };
-        console.log(hbsObject);
-        res.render("index", hbsObject);
+    
+        res.render("index", {burger_data: data});
     });
 });
 
-
-
-router.post("/", function (req, res) {
-    Burgers.create([
-        "burger_name", "Devoured"
-    ], [
-            req.body.name, req.body.Devoured
+router.post("/burgers/create", function (req, res) {
+    console.log(req.body)
+    Burger.insertOne([
+        "burger_name", "devoured"
+    ],
+     [
+            req.body.burgerName, req.body.devoured
         ], function (result) {
             // Send back the ID of the new quote
-            res.json({ id: result.insertId });
+            res.redirect("/");
         });
 });
-// var orm = {
-//     all: function (tableInput, cb) {
-//         connection.query("SELECT * FROM burgers", function (err, result) {
-//             if (err) {
-//                 throw err;
-//             }
-//             cb(result);
-//         });
-//     },
 
-// };
+router.put('/burgers/:id', function (req, res) {
+    var condition = 'id = ' + req.params.id;
+
+    burger.updateOne({
+        devoured: true
+    }, condition, function (data) {
+        res.redirect('/');
+    });
+});
 
 module.exports = router;
 
-// , foundburger
